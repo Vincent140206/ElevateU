@@ -1,7 +1,7 @@
-# elevateu_bcc
+# ElevateU
 
 Siap Kerja, Siap Sukses
 
-## Getting Started
+## Sebuah Projek
 
-Sebuah projek yang dikerjakan dengan sepenuh hati
+Yang dikerjakan dengan sepenuh hati
