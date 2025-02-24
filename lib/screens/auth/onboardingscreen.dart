@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'loginscreen.dart';
+
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
@@ -223,7 +225,8 @@ class OnboardingState extends State<Onboarding> {
                               )
                           ),
                           onPressed: () {
-
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => const LoginScreen()));
                           },
                           child: const Text(
                             'Mulai',
