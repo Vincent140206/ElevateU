@@ -1,6 +1,5 @@
 import 'dart:ui';
-
-class TextStyles {
+class Textstyles {
   // Heading 1
   static TextStyle heading1Regular = TextStyle(
     fontSize: 24,
