@@ -1,7 +1,7 @@
 import 'package:elevateu_bcc/screens/auth/onboardingscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:elevateu_bcc/assets/font/text_styles.dart';
-import 'package:elevateu_bcc/assets/colors.dart';
+
+import '../homescreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -67,14 +67,123 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 14
                           ),
                         ),
-                        TextField(
-                          controller: usernameController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-
-                            )
+                        const SizedBox(height: 11,),
+                        SizedBox(
+                          width: 356,
+                          height: 48,
+                          child: TextField(
+                            controller: usernameController,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: const BorderSide(
+                                      color: Colors.transparent
+                                  )
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.transparent)
+                              ),
+                              hintText: 'Email',
+                              filled: true,
+                              fillColor: const Color(0XFFEEEEEE),
+                              )
+                            ),
+                        ),
+                        const SizedBox(height: 32,),
+                        const Text('Password',
+                          style: TextStyle(
+                              fontSize: 14
                           ),
-
+                        ),
+                        const SizedBox(height: 11,),
+                        SizedBox(
+                          width: 356,
+                          height: 48,
+                          child: TextField(
+                              controller: usernameController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: const BorderSide(
+                                        color: Colors.transparent
+                                    )
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.transparent)
+                                ),
+                                hintText: 'Password',
+                                filled: true,
+                                fillColor: const Color(0XFFEEEEEE),
+                              )
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: (){},
+                            child: const Text('Lupa kata sandi?',
+                                style: TextStyle(
+                                fontSize: 12,
+                                ),
+                            )
+                        ),
+                        const SizedBox(height: 112,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 356,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: const Color(0XFF0D7CA4),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    shadowColor: Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12)
+                                    )
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) => const HomeScreen()));
+                                },
+                                child: const Text(
+                                  'Sign In',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 11,),
+                            const Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: Divider(color: Colors.grey, thickness: 1),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Text('or', style: TextStyle(fontSize: 16)),
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: Divider(color: Colors.grey, thickness: 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   )
