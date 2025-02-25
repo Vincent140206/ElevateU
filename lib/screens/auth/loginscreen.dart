@@ -1,6 +1,7 @@
 import 'package:elevateu_bcc/screens/auth/onboardingscreen.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/recovery.dart';
+import 'package:elevateu_bcc/screens/auth/signupscreen.dart';
 import 'package:flutter/material.dart';
-
 import '../homescreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => const Onboarding()));
-                      },
+                    },
                     icon: const ImageIcon(
                       AssetImage('assets/icons/Chevron_Left.png'),
                       size: 24,
@@ -50,12 +51,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("Let's Start your move",
-                            style: TextStyle(
-                                fontSize: 24,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
-                            ),
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
                           ),
+                        ),
                         const Text('Welcome back to ElevateU',
                           style: TextStyle(
                             fontSize: 14,
@@ -64,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 34,),
                         const Text('Username',
                           style: TextStyle(
-                            fontSize: 14
+                              fontSize: 14
                           ),
                         ),
                         const SizedBox(height: 11,),
@@ -72,23 +73,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 356,
                           height: 48,
                           child: TextField(
-                            controller: usernameController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent
-                                  )
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)
-                              ),
-                              hintText: 'Email',
-                              filled: true,
-                              fillColor: const Color(0XFFEEEEEE),
+                              controller: usernameController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: const BorderSide(
+                                        color: Colors.transparent
+                                    )
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.transparent)
+                                ),
+                                hintText: 'Email',
+                                filled: true,
+                                fillColor: const Color(0XFFEEEEEE),
                               )
-                            ),
+                          ),
                         ),
                         const SizedBox(height: 32,),
                         const Text('Password',
@@ -120,11 +121,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         TextButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(builder: (context) => Lupakatasandi()));
+                            },
                             child: const Text('Lupa kata sandi?',
-                                style: TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
-                                ),
+                              ),
                             )
                         ),
                         const SizedBox(height: 112,),
@@ -161,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 11,),
+                            const SizedBox(height: 15,),
                             const Row(
                               children: [
                                 Expanded(
@@ -182,6 +186,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Belum punya akun?'),
+                            TextButton(onPressed: (){
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(builder: (context) => Signupscreen()));
+                            },
+                                child: Text('Sign Up'))
                           ],
                         )
                       ],
