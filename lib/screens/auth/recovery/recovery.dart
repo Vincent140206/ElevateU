@@ -24,7 +24,10 @@ class _LupakatasandiState extends State<Lupakatasandi> {
               const SizedBox(width: 16),
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                 },
                 icon: const ImageIcon(
                   AssetImage('assets/icons/Chevron_Left.png'),

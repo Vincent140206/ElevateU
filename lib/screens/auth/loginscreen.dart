@@ -1,6 +1,7 @@
 import 'package:elevateu_bcc/screens/auth/onboardingscreen.dart';
 import 'package:elevateu_bcc/screens/auth/recovery/recovery.dart';
 import 'package:elevateu_bcc/screens/auth/signupscreen.dart';
+import 'package:elevateu_bcc/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import '../homescreen.dart';
 
@@ -13,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,24 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           width: 356,
                           height: 48,
-                          child: TextField(
+                          child: Textfield(
                               controller: usernameController,
+                              hintText: 'Email',
                               obscureText: false,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
-                                        color: Colors.transparent
-                                    )
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.transparent)
-                                ),
-                                hintText: 'Email',
-                                filled: true,
-                                fillColor: const Color(0XFFEEEEEE),
-                              )
-                          ),
+                              color: const Color(0XFFEEEEEE),
+                            borderColor: Colors.transparent,
+                          )
                         ),
                         const SizedBox(height: 32,),
                         const Text('Password',
@@ -101,24 +92,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           width: 356,
                           height: 48,
-                          child: TextField(
-                              controller: usernameController,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
-                                        color: Colors.transparent
-                                    )
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.transparent)
-                                ),
-                                hintText: 'Password',
-                                filled: true,
-                                fillColor: const Color(0XFFEEEEEE),
-                              )
-                          ),
+                          child: Textfield(
+                              controller: passwordController,
+                              hintText: 'Password',
+                              obscureText: true,
+                              color: const Color(0XFFEEEEEE),
+                            borderColor: Colors.transparent,
+                          )
                         ),
                         TextButton(
                             onPressed: (){
@@ -131,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             )
                         ),
-                        const SizedBox(height: 112,),
+                        const SizedBox(height: 273,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -165,27 +145,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 15,),
-                            const Row(
-                              children: [
-                                Expanded(
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: Divider(color: Colors.grey, thickness: 1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Text('or', style: TextStyle(fontSize: 16)),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: Divider(color: Colors.grey, thickness: 1),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                         Row(
@@ -195,8 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextButton(onPressed: (){
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(builder: (context) => Signupscreen()));
-                            },
-                                child: Text('Sign Up'))
+                              }, child: Text('Sign Up')
+                            )
                           ],
                         )
                       ],

@@ -1,21 +1,16 @@
-import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/screens/auth/signupformscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/textfield.dart';
-import 'onboardingscreen.dart';
-
-class Signupscreen extends StatefulWidget {
-  const Signupscreen({super.key});
+class SignupForm extends StatefulWidget {
+  const SignupForm({super.key});
 
   @override
-  State<Signupscreen> createState() => _SignupscreenState();
+  State<SignupForm> createState() => SignupFormState();
 }
 
-class _SignupscreenState extends State<Signupscreen> {
+class SignupFormState extends State<SignupForm> {
+  String? selectedRole;
   bool isChecked = false;
-
   final TextEditingController usernameController = TextEditingController();
 
   void toggleCheckbox() {
@@ -36,18 +31,13 @@ class _SignupscreenState extends State<Signupscreen> {
               const SizedBox(width: 16),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  );
+                  Navigator.of(context).pop();
                 },
-                icon: const ImageIcon(
-                  AssetImage('assets/icons/Chevron_Left.png'),
-                  size: 24,
-                ),
+                icon: const Icon(Icons.arrow_back, size: 24),
               ),
               const SizedBox(width: 125),
               const Text(
-                'Sign in',
+                'Sign Up',
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: 'Poppins',
@@ -64,7 +54,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Let's Start your move",
+                      "Data Diri",
                       style: TextStyle(
                         fontSize: 24,
                         fontFamily: 'Poppins',
@@ -73,29 +63,52 @@ class _SignupscreenState extends State<Signupscreen> {
                     ),
                     const SizedBox(height: 5),
                     const Text(
-                      'Welcome back to ElevateU',
+                      'Buat kata sandi yang kuat dan aman untuk \nmelindungi akunmu',
                       style: TextStyle(
                         fontSize: 14,
                       ),
                     ),
                     const SizedBox(height: 34),
                     const Text(
-                      'Username',
+                      'Pilih Role',
                       style: TextStyle(fontSize: 14),
                     ),
                     const SizedBox(height: 11),
-                    SizedBox(
-                      width: 356,
-                      height: 48,
-                      child: Textfield(
-                        controller: usernameController,
-                        hintText: 'Email',
-                        obscureText: false,
-                        color: const Color(0XFFEEEEEE),
-                        borderColor: Colors.transparent,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 326,
+                          height: 48,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: const Color(0XFFEEEEEE),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            selectedRole != null ? '$selectedRole' : 'Pilih Role-mu',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          hint: Text('$selectedRole'),
+                          value: selectedRole,
+                          items: <String>['Mentor', 'Student'].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedRole = newValue;
+                            });
+                          },
+                        ),
+                        const SizedBox(width: 20),
+                      ],
                     ),
-                    const SizedBox(height: 174),
+                    const SizedBox(height: 20),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -110,14 +123,20 @@ class _SignupscreenState extends State<Signupscreen> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        const Text('By creating this account, you agree to \nour Terms of Service')
+                        const Expanded(
+                          child: Text(
+                            'I agree to the Terms and Conditions',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ),
                       ],
                     ),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: isChecked
                           ? () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const SignupForm()),
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Account created!')),
                         );
                       }
                           : null,
@@ -130,7 +149,7 @@ class _SignupscreenState extends State<Signupscreen> {
                         ),
                       ),
                       child: const Text(
-                        'Kirim Verifikasi',
+                        'Sign Up',
                         style: TextStyle(fontSize: 18),
                       ),
                     ),

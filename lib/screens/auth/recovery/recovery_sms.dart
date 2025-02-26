@@ -1,5 +1,3 @@
-import 'package:elevateu_bcc/screens/auth/recovery/recovery.dart';
-import 'package:elevateu_bcc/widgets/button1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -48,19 +46,25 @@ class _RecoverySms extends State<RecoverySms> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Verifikasi Nomor",
+                  "Verifikasi Email",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                SizedBox(height: 9,),
                 Text(
-                  'Masukkan no telepon untuk verifikasi',
+                  'Masukkan email untuk verifikasi',
                   style: TextStyle(fontSize: 14),
                 ),
                 SizedBox(height: 29),
-                Text('Nomor Telepon'),
+                Text('Email',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14
+                  ),
+                ),
               ],
             ),
           ),

@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'loginscreen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
-
   @override
   State<Onboarding> createState() => OnboardingState();
 }
@@ -98,13 +96,13 @@ class OnboardingState extends State<Onboarding> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              data['title']!,
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0XFFFBBC05),
-                              ),
+                                data['title']!,
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0XFFFBBC05),
+                                ),
                             ),
                             const SizedBox(height: 9),
                             Text(
