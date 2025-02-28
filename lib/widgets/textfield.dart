@@ -30,6 +30,7 @@ class Textfield extends StatelessWidget {
           borderRadius: BorderRadius.circular(8)
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: borderColor),
         ),
         fillColor: color,

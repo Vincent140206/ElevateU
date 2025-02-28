@@ -1,5 +1,5 @@
 import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/screens/auth/recovery/recovery_sms.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/recovery_email.dart';
 import 'package:elevateu_bcc/widgets/button1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -63,28 +63,20 @@ class _LupakatasandiState extends State<Lupakatasandi> {
                   style: TextStyle(fontSize: 14),
                 ),
                 const SizedBox(height: 47),
-                Container(
-                  child: Column(
-                    children: [
-                      Button1(
-                          iconPath: 'assets/icons/SMS.png',
-                          title: 'Reset via SMS',
-                          subtitle: 'Jika kamu memiliki email  di akun',
-                          onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const RecoverySms()));
-                          }
-                      ),
-                      const SizedBox(height: 18),
-                      Button1(
-                          iconPath: 'assets/icons/Email.png',
-                          title: 'Reset via email',
-                          subtitle: 'Jika kamu memiliki email  di akun',
-                          onTap: (){}
-                      )
-                    ],
-                  ),
+                Column(
+                  children: [
+                    const SizedBox(height: 18),
+                    Button1(
+                        iconPath: 'assets/icons/Email.png',
+                        title: 'Reset via email',
+                        subtitle: 'Jika kamu memiliki email  di akun',
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const RecoveryEmail()));
+                        }
+                    )
+                  ],
                 )
 
               ],

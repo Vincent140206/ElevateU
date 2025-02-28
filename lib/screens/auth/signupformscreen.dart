@@ -1,7 +1,10 @@
-import 'package:elevateu_bcc/widgets/button1.dart';
+import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
+import 'package:elevateu_bcc/widgets/elevatedbutton1.dart';
 import 'package:elevateu_bcc/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/popup.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -24,76 +27,28 @@ class SignupFormState extends State<SignupForm> {
     });
   }
 
-  void PopUpBerhasil (BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            height: 400,
-            width: 272,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/AkunCreated.png',
-                  height: 206,
-                  width: 205,
-                ),
-                const SizedBox(height: 9),
-                const Text(
-                  'Selamat!',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  'Anda berhasil \nmembuat Akun',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 5),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff007BFF),
-                  ),
-                  child: const Text('Lanjut'),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 62),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 16),
               IconButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: const Icon(Icons.arrow_back, size: 24),
+                icon: const ImageIcon(
+                  AssetImage('assets/icons/Chevron_Left.png'),
+                  size: 24,
+                ),
               ),
-              const SizedBox(width: 125),
+              const Spacer(),
               const Text(
                 'Sign Up',
                 style: TextStyle(
@@ -101,6 +56,8 @@ class SignupFormState extends State<SignupForm> {
                   fontFamily: 'Poppins',
                 ),
               ),
+              const SizedBox(width: 65),
+              const Spacer(),
             ],
           ),
           Expanded(
@@ -178,71 +135,58 @@ class SignupFormState extends State<SignupForm> {
                     ),
                     const SizedBox(height: 12),
                     const Text('Nama'),
-                    const SizedBox(height: 12,),
+                    const SizedBox(height: 12),
                     Textfield(
-                        controller: nameController,
-                        hintText: 'Jacob Hensen',
-                        obscureText: false,
-                        color: const Color(0XFFEEEEEE),
-                        borderColor: Colors.transparent
+                      controller: nameController,
+                      hintText: 'Jacob Hensen',
+                      obscureText: false,
+                      color: const Color(0XFFEEEEEE),
+                      borderColor: Colors.transparent,
                     ),
                     const SizedBox(height: 12),
                     const Text('Password'),
-                    const SizedBox(height: 12,),
+                    const SizedBox(height: 12),
                     Textfield(
-                        controller: passwordController,
-                        hintText: '8+ Characters, 1 Capital letter',
-                        obscureText: true,
-                        color: const Color(0XFFEEEEEE),
-                        borderColor: Colors.transparent
+                      controller: passwordController,
+                      hintText: '8+ Characters, 1 Capital letter',
+                      obscureText: true,
+                      color: const Color(0XFFEEEEEE),
+                      borderColor: Colors.transparent,
                     ),
                     const SizedBox(height: 12),
                     const Text('Ulangi Password'),
-                    const SizedBox(height: 12,),
+                    const SizedBox(height: 12),
                     Textfield(
-                        controller: rePasswordController,
-                        hintText: '8+ Characters, 1 Capital letter',
-                        obscureText: true,
-                        color: const Color(0XFFEEEEEE),
-                        borderColor: Colors.transparent
+                      controller: rePasswordController,
+                      hintText: '8+ Characters, 1 Capital letter',
+                      obscureText: true,
+                      color: const Color(0XFFEEEEEE),
+                      borderColor: Colors.transparent,
                     ),
                     const SizedBox(height: 12),
                     const Text('Masukan Otp'),
-                    const SizedBox(height: 12,),
+                    const SizedBox(height: 12),
                     Textfield(
-                        controller: OTPController,
-                        hintText: '6 Numbers',
-                        obscureText: true,
-                        color: const Color(0XFFEEEEEE),
-                        borderColor: Colors.transparent
+                      controller: OTPController,
+                      hintText: '6 Numbers',
+                      obscureText: true,
+                      color: const Color(0XFFEEEEEE ),
+                      borderColor: Colors.transparent,
                     ),
-                    const SizedBox(height: 105,),
-                    Container(
-                      width: 365,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0XFF0D7CA4),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)
-                            )
-                        ),
-                        onPressed: ()  => PopUpBerhasil(context),
-                        child: const Text(
-                          'Lanjutkan',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                    const SizedBox(height: 105),
+                    Elevatedbutton1(
+                      tulisan: 'Lanjutkan',
+                      onPressed: () {
+                        PopUp.show(
+                          context,
+                          imagePath: 'assets/images/AkunCreated.png',
+                          deskripsi: 'Anda berhasil\nmembuat Akun',
+                        ).then((_) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                          );
+                        });
+                      },
                     ),
                   ],
                 ),

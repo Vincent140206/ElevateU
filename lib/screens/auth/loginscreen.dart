@@ -1,5 +1,6 @@
 import 'package:elevateu_bcc/screens/auth/onboardingscreen.dart';
 import 'package:elevateu_bcc/screens/auth/recovery/recovery.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/recovery_email.dart';
 import 'package:elevateu_bcc/screens/auth/signupscreen.dart';
 import 'package:elevateu_bcc/widgets/textfield.dart';
 import 'package:flutter/material.dart';
@@ -19,151 +20,153 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-            children: [
-              const SizedBox(height: 62),
-              Row(
-                children: [
-                  const SizedBox(width: 16),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => const Onboarding()));
-                    },
-                    icon: const ImageIcon(
-                      AssetImage('assets/icons/Chevron_Left.png'),
-                      size: 24,
+        body: SingleChildScrollView(
+          child: Column(
+              children: [
+                const SizedBox(height: 62),
+                Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => const Onboarding()));
+                      },
+                      icon: const ImageIcon(
+                        AssetImage('assets/icons/Chevron_Left.png'),
+                        size: 24,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 125,),
-                  const Text('Sign in',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Poppins',
-                      )
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(top: 28, left: 30, right: 30),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Let's Start your move",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
+                    const SizedBox(width: 125,),
+                    const Text('Sign in',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Poppins',
+                        )
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(top: 28, left: 30, right: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Let's Start your move",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const Text('Welcome back to ElevateU',
-                          style: TextStyle(
-                            fontSize: 14,
+                          const Text('Welcome back to ElevateU',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 34,),
-                        const Text('Username',
-                          style: TextStyle(
-                              fontSize: 14
+                          const SizedBox(height: 34,),
+                          const Text('Username',
+                            style: TextStyle(
+                                fontSize: 14
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 11,),
-                        SizedBox(
-                          width: 356,
-                          height: 48,
-                          child: Textfield(
-                              controller: usernameController,
-                              hintText: 'Email',
-                              obscureText: false,
-                              color: const Color(0XFFEEEEEE),
-                            borderColor: Colors.transparent,
-                          )
-                        ),
-                        const SizedBox(height: 32,),
-                        const Text('Password',
-                          style: TextStyle(
-                              fontSize: 14
-                          ),
-                        ),
-                        const SizedBox(height: 11,),
-                        SizedBox(
-                          width: 356,
-                          height: 48,
-                          child: Textfield(
-                              controller: passwordController,
-                              hintText: 'Password',
-                              obscureText: true,
-                              color: const Color(0XFFEEEEEE),
-                            borderColor: Colors.transparent,
-                          )
-                        ),
-                        TextButton(
-                            onPressed: (){
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(builder: (context) => Lupakatasandi()));
-                            },
-                            child: const Text('Lupa kata sandi?',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
-                            )
-                        ),
-                        const SizedBox(height: 273,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
+                          const SizedBox(height: 11,),
+                          SizedBox(
                               width: 356,
                               height: 48,
-                              decoration: BoxDecoration(
-                                color: const Color(0XFF0D7CA4),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    shadowColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12)
-                                    )
+                              child: Textfield(
+                                controller: usernameController,
+                                hintText: 'Email',
+                                obscureText: false,
+                                color: const Color(0XFFEEEEEE),
+                                borderColor: Colors.transparent,
+                              )
+                          ),
+                          const SizedBox(height: 32,),
+                          const Text('Password',
+                            style: TextStyle(
+                                fontSize: 14
+                            ),
+                          ),
+                          const SizedBox(height: 11,),
+                          SizedBox(
+                              width: 356,
+                              height: 48,
+                              child: Textfield(
+                                controller: passwordController,
+                                hintText: 'Password',
+                                obscureText: true,
+                                color: const Color(0XFFEEEEEE),
+                                borderColor: Colors.transparent,
+                              )
+                          ),
+                          TextButton(
+                              onPressed: (){
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => const RecoveryEmail()));
+                              },
+                              child: const Text('Lupa kata sandi?',
+                                style: TextStyle(
+                                  fontSize: 12,
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(builder: (context) => const HomeScreen()));
-                                },
-                                child: const Text(
-                                  'Sign In',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                              )
+                          ),
+                          const SizedBox(height: 273,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 356,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: const Color(0XFF0D7CA4),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      shadowColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12)
+                                      )
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(builder: (context) => const HomeScreen()));
+                                  },
+                                  child: const Text(
+                                    'Sign In',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Belum punya akun?'),
-                            TextButton(onPressed: (){
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(builder: (context) => Signupscreen()));
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Belum punya akun?'),
+                              TextButton(onPressed: (){
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(builder: (context) => Signupscreen()));
                               }, child: Text('Sign Up')
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ]
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ]
+          ),
         )
     );
   }
