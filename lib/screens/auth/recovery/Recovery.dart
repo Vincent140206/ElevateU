@@ -1,7 +1,6 @@
-import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/screens/auth/recovery/recovery_email.dart';
-import 'package:elevateu_bcc/widgets/button1.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elevateu_bcc/screens/auth/LoginScreen.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/RecoveryEmail.dart';
+import 'package:elevateu_bcc/widgets/Button.dart';
 import 'package:flutter/material.dart';
 
 class Lupakatasandi extends StatefulWidget {
@@ -26,7 +25,7 @@ class _LupakatasandiState extends State<Lupakatasandi> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
                   );
                 },
                 icon: const ImageIcon(

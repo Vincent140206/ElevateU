@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Textfield extends StatelessWidget {
+class TextFields extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
@@ -9,14 +8,14 @@ class Textfield extends StatelessWidget {
   final Color color;
   final Color borderColor;
 
-  const Textfield({
+  const TextFields({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
     required this.color,
     required this.borderColor,
-    this.fillColor
+    this.fillColor,
   });
 
   @override

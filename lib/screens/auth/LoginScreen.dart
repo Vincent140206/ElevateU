@@ -1,10 +1,9 @@
-import 'package:elevateu_bcc/screens/auth/onboardingscreen.dart';
-import 'package:elevateu_bcc/screens/auth/recovery/recovery.dart';
-import 'package:elevateu_bcc/screens/auth/recovery/recovery_email.dart';
-import 'package:elevateu_bcc/screens/auth/signupscreen.dart';
-import 'package:elevateu_bcc/widgets/textfield.dart';
+import 'package:elevateu_bcc/screens/auth/onBoardingScreen.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/RecoveryEmail.dart';
+import 'package:elevateu_bcc/screens/auth/RegisterScreen.dart';
+import 'package:elevateu_bcc/widgets/TextField.dart';
 import 'package:flutter/material.dart';
-import '../homescreen.dart';
+import '../HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -76,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                               width: 356,
                               height: 48,
-                              child: Textfield(
+                              child: TextFields(
                                 controller: usernameController,
                                 hintText: 'Email',
                                 obscureText: false,
@@ -94,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                               width: 356,
                               height: 48,
-                              child: Textfield(
+                              child: TextFields(
                                 controller: passwordController,
                                 hintText: 'Password',
                                 obscureText: true,
@@ -155,8 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               const Text('Belum punya akun?'),
                               TextButton(onPressed: (){
                                 Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(builder: (context) => Signupscreen()));
-                              }, child: Text('Sign Up')
+                                    MaterialPageRoute(builder: (context) => const Signupscreen()));
+                              }, child: const Text('Sign Up')
                               )
                             ],
                           )

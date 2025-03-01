@@ -1,9 +1,13 @@
-import 'package:elevateu_bcc/widgets/elevatedbutton1.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dio/dio.dart';
+import 'package:elevateu_bcc/widgets/ElevatedButton.dart';
 import 'package:flutter/material.dart';
-
-import '../../widgets/popup.dart';
-import 'loginscreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
+import '../../bloc/Event.dart'; // Pastikan ini mengarah ke file yang benar
+import '../../bloc/OTPBloc.dart'; // Pastikan ini mengarah ke file yang benar
+import '../../bloc/RegisterBloc.dart'; // Pastikan ini mengarah ke file yang benar
+import '../../widgets/PopUp.dart';
+import 'LoginScreen.dart';
 
 class VerifikasiOtp extends StatefulWidget {
   const VerifikasiOtp({super.key});
@@ -39,7 +43,7 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                 ),
                 const Spacer(),
                 const Text(
-                  'Sign Up',
+                  'Verifikasi OTP',
                   style: TextStyle(
                     fontSize: 14,
                     fontFamily: 'Poppins',
@@ -64,7 +68,7 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                   ),
                   const SizedBox(height: 5),
                   const Text(
-                    'silakan masukkan kode yang dikirim ke nomor',
+                    'Silakan masukkan kode yang dikirim ke email',
                     style: TextStyle(
                       fontSize: 14,
                     ),
@@ -97,8 +101,8 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                           ),
                           decoration: const InputDecoration(
                             counterText: '',
-                              border: InputBorder.none,
-                            hintText: '*'
+                            border: InputBorder.none,
+                            hintText: '*',
                           ),
                           onChanged: (value) {
                             if (value.length == 1 && index < 5) {
@@ -111,12 +115,12 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                       );
                     }),
                   ),
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Ada masalah ?',
+                        'Ada masalah?',
                         style: TextStyle(
                           color: Color(0xFF5B5B5B),
                           fontSize: 12,
@@ -125,10 +129,22 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                           height: 1.50,
                         ),
                       ),
-                      const SizedBox(width: 9,),
+                      const SizedBox(width: 9),
                       TextButton(
-                        onPressed: () {
-
+                        onPressed: () async {
+                          final prefs = await SharedPreferences.getInstance();
+                          String email = prefs.getString('email') ?? '';
+                          if (email.isNotEmpty) {
+                            context.read<RegisterBloc>().add(
+                              RegisterSubmitted(
+                                email: email, name: '', password: '', role: '',
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Email tidak ditemukan')),
+                            );
+                          }
                         },
                         child: const Text(
                           'Kirim ulang kode',
@@ -143,7 +159,7 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 25),
                   Center(
                     child: Container(
                       width: 253,
@@ -156,20 +172,21 @@ class _VerifikasiOtpState extends State<VerifikasiOtp> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 182,),
+                  const SizedBox(height: 182),
                   Elevatedbutton1(
-                      tulisan: 'Kirim Verifikasi',
-                      onPressed: () {
-                        PopUp.show(
-                          context,
-                          imagePath: 'assets/images/AkunCreated.png',
-                          deskripsi: 'Anda berhasil\nmembuat Akun',
-                        ).then((_) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => const LoginScreen()),
-                          );
-                        });
+                    width: 36,
+                    height: 48,
+                    tulisan: 'Kirim Verifikasi',
+                    onPressed: () async {
+                      String otp = controllers.map((controller) => controller.text).join();
+                      if (otp.length == 6) {
+                        context.read<OTPBloc>().add(OTPSubmitted(otp));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Harap masukkan semua digit OTP')),
+                        );
                       }
+                    },
                   ),
                 ],
               ),

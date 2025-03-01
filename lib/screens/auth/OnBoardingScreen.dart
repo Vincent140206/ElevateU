@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'loginscreen.dart';
+import 'LoginScreen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});

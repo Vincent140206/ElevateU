@@ -1,10 +1,9 @@
-import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/widgets/elevatedbutton1.dart';
-import 'package:elevateu_bcc/widgets/textfield.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elevateu_bcc/screens/auth/LoginScreen.dart';
+import 'package:elevateu_bcc/widgets/ElevatedButton.dart';
+import 'package:elevateu_bcc/widgets/TextField.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/popup.dart';
+import '../../widgets/PopUp.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -19,7 +18,7 @@ class SignupFormState extends State<SignupForm> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
-  final TextEditingController OTPController = TextEditingController();
+  final TextEditingController otpController = TextEditingController();
 
   void toggleCheckbox() {
     setState(() {
@@ -136,7 +135,7 @@ class SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 12),
                     const Text('Nama'),
                     const SizedBox(height: 12),
-                    Textfield(
+                    TextFields(
                       controller: nameController,
                       hintText: 'Jacob Hensen',
                       obscureText: false,
@@ -146,7 +145,7 @@ class SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 12),
                     const Text('Password'),
                     const SizedBox(height: 12),
-                    Textfield(
+                    TextFields(
                       controller: passwordController,
                       hintText: '8+ Characters, 1 Capital letter',
                       obscureText: true,
@@ -156,7 +155,7 @@ class SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 12),
                     const Text('Ulangi Password'),
                     const SizedBox(height: 12),
-                    Textfield(
+                    TextFields(
                       controller: rePasswordController,
                       hintText: '8+ Characters, 1 Capital letter',
                       obscureText: true,
@@ -166,8 +165,8 @@ class SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 12),
                     const Text('Masukan Otp'),
                     const SizedBox(height: 12),
-                    Textfield(
-                      controller: OTPController,
+                    TextFields(
+                      controller: otpController,
                       hintText: '6 Numbers',
                       obscureText: true,
                       color: const Color(0XFFEEEEEE ),
@@ -175,6 +174,8 @@ class SignupFormState extends State<SignupForm> {
                     ),
                     const SizedBox(height: 105),
                     Elevatedbutton1(
+                      width: 356,
+                      height: 48,
                       tulisan: 'Lanjutkan',
                       onPressed: () {
                         PopUp.show(

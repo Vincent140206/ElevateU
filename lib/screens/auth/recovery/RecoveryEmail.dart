@@ -1,7 +1,6 @@
-import 'package:elevateu_bcc/screens/auth/recovery/recovery_password.dart';
-import 'package:elevateu_bcc/widgets/elevatedbutton1.dart';
-import 'package:elevateu_bcc/widgets/textfield.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elevateu_bcc/screens/auth/recovery/RecoveryPassword.dart';
+import 'package:elevateu_bcc/widgets/ElevatedButton.dart';
+import 'package:elevateu_bcc/widgets/TextField.dart';
 import 'package:flutter/material.dart';
 
 class RecoveryEmail extends StatefulWidget {
@@ -73,7 +72,7 @@ class RecoveryEmailState extends State<RecoveryEmail> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Textfield(
+                  TextFields(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
@@ -84,6 +83,8 @@ class RecoveryEmailState extends State<RecoveryEmail> {
                   Image.asset('assets/images/Recovery.png'),
                   const SizedBox(height: 126),
                   Elevatedbutton1(
+                    width: 356,
+                    height: 48,
                     tulisan: 'Verifikasi Kode',
                     onPressed: () {
                       Navigator.of(context).push(

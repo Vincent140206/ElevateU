@@ -1,10 +1,9 @@
-import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/widgets/elevatedbutton1.dart';
-import 'package:elevateu_bcc/widgets/popup.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elevateu_bcc/screens/auth/LoginScreen.dart';
+import 'package:elevateu_bcc/widgets/ElevatedButton.dart';
+import 'package:elevateu_bcc/widgets/PopUp.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/textfield.dart';
+import '../../../widgets/TextField.dart';
 
 class RecoveryPassword extends StatefulWidget {
   const RecoveryPassword({super.key});
@@ -76,7 +75,7 @@ class _RecoveryPasswordState extends State<RecoveryPassword> {
                     ),
                   ),
                   const SizedBox(height: 11),
-                  Textfield(
+                  TextFields(
                     controller: passwordController,
                     hintText: '8+ Characters, 1 Capital letter',
                     obscureText: true,
@@ -92,7 +91,7 @@ class _RecoveryPasswordState extends State<RecoveryPassword> {
                     ),
                   ),
                   const SizedBox(height: 11),
-                  Textfield(
+                  TextFields(
                     controller: rePasswordController,
                     hintText: '8+ Characters, 1 Capital letter',
                     obscureText: true,
@@ -101,6 +100,8 @@ class _RecoveryPasswordState extends State<RecoveryPassword> {
                   ),
                   const SizedBox(height: 20),
                   Elevatedbutton1(
+                    width: 356,
+                    height: 48,
                     tulisan: 'Verifikasi Kode',
                     onPressed: () {
                       PopUp.show(

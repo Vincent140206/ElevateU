@@ -1,21 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Elevatedbutton1 extends StatelessWidget {
   final String tulisan;
   final VoidCallback onPressed;
+  final double width;
+  final double height;
 
   const Elevatedbutton1({
     super.key,
     required this.tulisan,
     required this.onPressed,
+    required this.width,
+    required this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 356,
-      height: 48,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         color: const Color(0XFF0D7CA4),
         borderRadius: BorderRadius.circular(8),

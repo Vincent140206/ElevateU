@@ -1,9 +1,11 @@
-import 'package:elevateu_bcc/screens/auth/loginscreen.dart';
-import 'package:elevateu_bcc/screens/auth/signupformscreen.dart';
-import 'package:elevateu_bcc/screens/auth/verifikasi_otp.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elevateu_bcc/screens/auth/LoginScreen.dart';
+import 'package:elevateu_bcc/screens/auth/VerifikasiOTP.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/textfield.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/RegisterBloc.dart' as bloc;
+import '../../bloc/Event.dart' as event;
+import '../../bloc/Event.dart';
+import '../../widgets/TextField.dart';
 
 class Signupscreen extends StatefulWidget {
   const Signupscreen({super.key});
@@ -15,8 +17,8 @@ class Signupscreen extends StatefulWidget {
 class _SignupscreenState extends State<Signupscreen> {
   String? selectedRole;
   bool isChecked = false;
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
 
@@ -37,13 +39,27 @@ class _SignupscreenState extends State<Signupscreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 62),
+      body: BlocListener<bloc.RegisterBloc, RegisterState>(
+        listener: (context, state) {
+          if (state is RegisterSuccess) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const VerifikasiOtp()),
+            );
+          } else if (state is RegisterFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Error: ${state.error}')),
+            );
+          }
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Column(
+                children: [
+                const SizedBox(height: 62),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(width: 16),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
@@ -69,7 +85,7 @@ class _SignupscreenState extends State<Signupscreen> {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(top: 28, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 28),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -90,7 +106,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   ),
                   const SizedBox(height: 34),
                   const Text('Nama'),
-                  Textfield(
+                  TextFields(
                     controller: nameController,
                     hintText: 'Jacob Hensen',
                     obscureText: false,
@@ -103,8 +119,8 @@ class _SignupscreenState extends State<Signupscreen> {
                     style: TextStyle(fontSize: 14),
                   ),
                   const SizedBox(height: 11),
-                  Textfield(
-                    controller: usernameController,
+                  TextFields(
+                    controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                     color: const Color(0XFFEEEEEE),
@@ -164,7 +180,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   const SizedBox(height: 12),
                   const Text('Password'),
                   const SizedBox(height: 12),
-                  Textfield(
+                  TextFields(
                     controller: passwordController,
                     hintText: '8+ Characters, 1 Capital letter',
                     obscureText: true,
@@ -174,7 +190,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   const SizedBox(height: 12),
                   const Text('Ulangi Password'),
                   const SizedBox(height: 12),
-                  Textfield(
+                  TextFields(
                     controller: rePasswordController,
                     hintText: '8+ Characters, 1 Capital letter',
                     obscureText: true,
@@ -207,10 +223,40 @@ class _SignupscreenState extends State<Signupscreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: isChecked
-                        ? () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const VerifikasiOtp()),
-                      );
+                        ? () async {
+                      if (nameController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Nama tidak boleh kosong')),
+                        );
+                        return;
+                      }
+                      if (emailController.text.isEmpty || !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(emailController.text)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Email tidak valid')),
+                        );
+                        return;
+                      }
+                      if (passwordController.text.length < 8) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Password harus minimal 8 karakter')),
+                        );
+                        return;
+                      }
+                      if (passwordController.text != rePasswordController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Password tidak cocok')),
+                        );
+                        return;
+                      } {
+                        context.read<bloc.RegisterBloc>().add(
+                          event.RegisterSubmitted(
+                            name: nameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            role: selectedRole ?? 'student',
+                          )
+                        );
+                      }
                     }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -230,19 +276,24 @@ class _SignupscreenState extends State<Signupscreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text('Sudah punya akun?'),
-                      TextButton(onPressed: (){
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => LoginScreen()));
-                      }, child: Text('Sign In')
-                      )
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                          );
+                        },
+                        child: const Text('Sign In'),
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
+            )
+                ],
             ),
-          ],
+          ),
         ),
-      ),
+      )
     );
   }
 }

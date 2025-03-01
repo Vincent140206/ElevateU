@@ -1,8 +1,16 @@
-import 'package:elevateu_bcc/screens/auth/splashscreen.dart';
+import 'package:dio/src/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'bloc/RegisterBloc.dart';
+import 'screens/auth/SplashScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    Provider<RegisterBloc>(
+      create: (_) => RegisterBloc(Dio()),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
